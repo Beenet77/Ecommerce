@@ -5,8 +5,8 @@ import { loginAction } from "../../redux/actions/LoginAction";
 export default function Login() {
   const dispatch = useDispatch()
   const {handleSubmit, register} = useForm();
-  const loginInfo = useSelector(state => state.LoginReducer)
-  console.log(loginInfo)
+  // const loginInfo = useSelector(state => state.LoginReducer)
+  // console.log(loginInfo)
 
   function onSubmit(data){
     dispatch(loginAction(data))
