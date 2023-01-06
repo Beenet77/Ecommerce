@@ -1,0 +1,14 @@
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(201, 193, 193);
+    align-items: center;
+    padding: 10px;
+}
+.navItems ul a {
+    text-decoration: none;
+}
+.navItems ul a li{
+    display: inline;
+    padding-left: 30px;
+}

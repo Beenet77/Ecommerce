@@ -1,10 +1,13 @@
-export default function Card(props) {
-	return (
-		<div>
-			{/* <img src={props.image[0]} alt={props.name}/>
-			<h3>{props.name}</h3>
-			<h3>{props.discription}</h3> */}
-			card
-		</div>
-	)
+export default function Card({ products, ...props }) {
+  return (
+    <div>
+      <img width="200px" src={products.images[0]} alt={products?.title} />
+      <h3>Rs {products?.price}</h3>
+      <a href={`/product-detail?id=${products.id}`}>
+        <h3>{products?.title}</h3>
+        <p>{products?.description}</p>
+      </a>
+      <hr />
+    </div>
+  )
 }

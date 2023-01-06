@@ -1,15 +1,19 @@
+import { HEADERS } from "../../constants";
+import "./style.css"
+
 export default function Header() {
-    return (
-        <div>
-            <div>logo</div>
-            <div>
-                <ul>
-                    <li>home</li>
-                    <li>contact</li>
-                    <li>about</li>
-                    <li>categories</li>
-                </ul>
-            </div>
-        </div>
-    )
+  return (
+    <div className="headerContainer">
+      <div>logo</div>
+      <div className="navItems">
+        <ul>
+          {
+            HEADERS.map((item, index) => (
+              <a key={index} href={item.path}><li>{item.name}</li></a>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  )
 }
