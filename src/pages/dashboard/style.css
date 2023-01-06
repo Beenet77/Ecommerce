@@ -1,0 +1,11 @@
+.filterBar {
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(66, 66, 66);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.filterBar input{
+    margin-right: 5px;
+}

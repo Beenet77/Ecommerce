@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { API_URL, ECOM } from "../../api/api";
+import Button from "../../components/button/Button";
 
 export default function Signup() {
   const {handleSubmit, register} = useForm();
@@ -21,8 +22,7 @@ export default function Signup() {
         <input type="email" {...register("email", {required: true})} />
         <input type="password" {...register("password",{ required: true})}/>
         <input defaultValue="type image url" type="text"  {...register("avatar")}/>
-        <button type="submit" >Submit</button>
-      </form>
+        <Button name="submit"/>      </form>
       <p>have an account</p><a href="/login">login</a>
     </>
   )

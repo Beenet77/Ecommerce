@@ -12,11 +12,15 @@ export const HEADERS = [
     path: "/about-us"
   },
   {
+    name: "cart",
+    path: "/cart"
+  },
+  {
     name: "login",
     path: "/login"
   },
   {
     name: "signup",
     path: "/signup"
-  }
+  },
 ]
