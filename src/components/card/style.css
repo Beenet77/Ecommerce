@@ -34,3 +34,9 @@ object-fit: cover;
     font-size: 14px;
     line-height: 18px;
 }
+
+.imageWrapper{
+    height: 224px;
+    width: 300px;
+    background-color: rgb(184, 184, 184);
+}
