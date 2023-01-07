@@ -1,13 +1,30 @@
 import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { API_URL, ECOM } from "../../api/api";
 import Card from "../../components/card/Card";
+import EmptyPage from "../../components/empty-page/EmptyPage";
+import FilterBar from "../../components/filter-bar/FilterBar";
+import DashboardCarousel from "./helpers/Carousel";
 import "./style.css"
 
 export default function Dashboard() {
   const [products, setProducts] = useState([]);
+  const [maxPrice, setMaxPrice] = useState();
+  const [minPrice, setMinPrice] = useState();
+  const [filtered, setFiltered] = useState(false);
 
   async function getProducts() {
-    let response = await ECOM.get(API_URL.products + "?offset=10&limit=15");
+    let url = API_URL.products + "?offset=10&limit=16"
+    if (maxPrice) {
+      setFiltered(true)
+      url += "&price_max=" + maxPrice
+    }
+    if (minPrice) {
+      setFiltered(true)
+      url += "&price_min=" + minPrice
+    }
+    !maxPrice && !minPrice && setFiltered(false)
+    let response = await ECOM.get(url);
     let jsondata = response.data;
     if (response.status <= 299) {
       setProducts(jsondata)
@@ -17,31 +34,44 @@ export default function Dashboard() {
     }
   }
 
-  function handleSelectChange(e){
+  function handleSelectChange(e) {
     console.log(e.target.value)
+  }
+
+  function handleMaxInputChange(e) {
+    setMaxPrice(e.target.value)
+  }
+
+  function handleMinInputChange(e) {
+    setMinPrice(e.target.value)
   }
 
   useEffect(() => {
     getProducts();
-  }, [])
+  }, [minPrice, maxPrice])
 
   return (
     <>
-      <div className="filterBar">
-        <input type="number" defaultValue="min price" />
-        <input type="number" defaultValue="max price" />
-        <select id="cars" onChange={handleSelectChange}>
-          <option value="volvo">Volvo XC90</option>
-          <option value="saab">Saab 95</option>
-          <option value="mercedes">Mercedes SLK</option>
-          <option value="audi">Audi TT</option>
-        </select>
-      </div>
-      {products.map((item, index) => (
-        <div key={index}>
-          <Card products={item} />
-        </div>
-      ))}
+      <FilterBar handleMinInputChange={handleMinInputChange} handleMaxInputChange={handleMaxInputChange} handleSelectChange={handleSelectChange} />
+      <Container fluid>
+        {!filtered &&
+          <DashboardCarousel />}
+        <Row>
+          {products.length <= 0 ?
+            (
+              <EmptyPage />
+            )
+            :
+            (
+              products.map((item, index) => (
+                <Col key={index}>
+                  <Card products={item} />
+                </Col>
+              ))
+            )
+          }
+        </Row>
+      </Container>
     </>
   )
 }

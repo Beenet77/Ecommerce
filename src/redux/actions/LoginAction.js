@@ -12,5 +12,4 @@ export const loginAction = (data) => async (dispatch) => {
   catch {
     alert("somthing went wrong")
   }
- 
 }

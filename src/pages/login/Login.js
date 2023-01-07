@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { API_URL, ECOM } from "../../api/api";
 import Button from "../../components/button/Button";
 import { loginAction } from "../../redux/actions/LoginAction";
 
@@ -8,9 +9,21 @@ export default function Login() {
   const {handleSubmit, register} = useForm();
 
 
-  function onSubmit(data){
-    dispatch(loginAction(data))
+  async function onSubmit(data){
+    // dispatch(loginAction(data))
     // console.log(data)
+    try {
+      let response = await ECOM.post(API_URL.login, data);
+      if (response.status <= 299) {
+        alert("Login Successful!")
+        
+        // dispatch({ type: LOGIN_SUCCESS, payload: data })
+      }
+    }
+    catch {
+      alert("somthing went wrong")
+    }
+   
   }
   return (
     <>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { API_URL, ECOM } from "../../api/api";
 import Card from "../../components/card/Card";
 import { AppUtils } from "../../utils/AppUtils"
@@ -24,11 +25,15 @@ export default function ProductByCategory() {
 
   return (
     <>
-      {products.map((item, index) => (
-        <div key={index}>
-          <Card products={item} />
-        </div>
-      ))}
+      <Container fluid>
+        <Row>
+          {products.map((item, index) => (
+            <Col key={index}>
+              <Card products={item} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </>
   )
 }

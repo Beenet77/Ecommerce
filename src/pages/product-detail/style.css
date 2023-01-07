@@ -1,0 +1,10 @@
+.productImageList{
+    display: flex;
+}
+.productImageList img{
+    margin: 5px;
+    cursor: pointer;
+}
+.productContainer{
+    margin-top: 10px;
+}
