@@ -11,6 +11,7 @@ export default function Dashboard() {
   const [products, setProducts] = useState([]);
   const [maxPrice, setMaxPrice] = useState();
   const [minPrice, setMinPrice] = useState();
+  const [categoryId, setCategoryId] = useState(null);
   const [filtered, setFiltered] = useState(false);
 
   async function getProducts() {
@@ -22,6 +23,10 @@ export default function Dashboard() {
     if (minPrice) {
       setFiltered(true)
       url += "&price_min=" + minPrice
+    }
+    if(categoryId){
+      setFiltered(true)
+      url += "&category_id=" + categoryId
     }
     !maxPrice && !minPrice && setFiltered(false)
     let response = await ECOM.get(url);
@@ -35,7 +40,7 @@ export default function Dashboard() {
   }
 
   function handleSelectChange(e) {
-    console.log(e.target.value)
+    setCategoryId(e.target.value)
   }
 
   function handleMaxInputChange(e) {

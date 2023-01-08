@@ -8,7 +8,6 @@ export default function ProductByCategory() {
   const id = AppUtils.getUrlParam("id")
   const [products, setProducts] = useState([]);
 
-
   async function getProductsByCategoryId(categoryId) {
     let response = await ECOM.get(API_URL.categories + "/" + categoryId + "/" + "products");
     if (response.status <= 299) {
