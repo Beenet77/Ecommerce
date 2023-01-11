@@ -1,2 +1,2 @@
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const USER_INFO = "USER_INFO"
 export const CATEGORIES_SUCCESS = "CATEGORIES_SUCCESS"

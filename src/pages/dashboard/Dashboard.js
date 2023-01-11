@@ -26,9 +26,9 @@ export default function Dashboard() {
     }
     if(categoryId){
       setFiltered(true)
-      url += "&category_id=" + categoryId
+      url += "&categoryId=" + categoryId
     }
-    !maxPrice && !minPrice && setFiltered(false)
+    !maxPrice && !minPrice && !categoryId && setFiltered(false)
     let response = await ECOM.get(url);
     let jsondata = response.data;
     if (response.status <= 299) {
@@ -53,7 +53,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     getProducts();
-  }, [minPrice, maxPrice])
+  }, [categoryId, minPrice, maxPrice])
 
   return (
     <>

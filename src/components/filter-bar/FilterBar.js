@@ -16,7 +16,7 @@ export default function FilterBar(props) {
       <div className="filterBar">
         <input type="number" placeholder="min-price" onChange={(e) => props.handleMinInputChange(e)} defaultValue="max price" />
         <input type="number" placeholder="max-price" onChange={(e) => props.handleMaxInputChange(e)} defaultValue="min price" />
-        <select id="cars" onChange={props.handleSelectChange}>
+        <select name="options" onChange={props.handleSelectChange}>
           {
             categories?.map((item, index) => (
               <option key={index} value={item?.id}>{item?.name}</option>

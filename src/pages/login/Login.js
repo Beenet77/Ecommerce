@@ -1,31 +1,29 @@
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import { API_URL, ECOM } from "../../api/api";
 import Button from "../../components/button/Button";
-import { loginAction } from "../../redux/actions/LoginAction";
 import "./style.css"
 
 export default function Login() {
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
   const { handleSubmit, register } = useForm();
 
-
   async function onSubmit(data) {
-    // dispatch(loginAction(data))
-    // console.log(data)
     try {
       let response = await ECOM.post(API_URL.login, data);
       if (response.status <= 299) {
         alert("Login Successful!")
-        // localStorage.setItem(ACCESS_TOKEN, )
-        // dispatch({ type: LOGIN_SUCCESS, payload: data })
+        let data = response.data;
+        localStorage.setItem("ACCESS_TOKEN", data.access_token)
+        localStorage.setItem("REFRESH_TOKEN", data.refresh_token)
+        navigate("/")
       }
     }
-    catch {
-      alert("somthing went wrong")
+    catch(err) {
+      alert(err.message)
     }
-
   }
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { LoginReducer } from "./LoginReducers";
+import { GetUserInfoReducers } from "./GetUserInfoReducers";
 import { CategoriesReducers } from "./CategoriesReducers";
 
-export default combineReducers({LoginReducer, CategoriesReducers});
+export default combineReducers({GetUserInfoReducers, CategoriesReducers});

@@ -1,30 +1,23 @@
-// import { HEADERS } from "../../constants";
 import "./style.css"
-
-// export default function Header() {
-//   return (
-//     <div className="headerContainer">
-//       <div>logo</div>
-//       <div className="navItems">
-//         <ul>
-//           {
-//             HEADERS.map((item, index) => (
-//               <a key={index} href={item.path}><li>{item.name}</li></a>
-//             ))
-//           }
-//         </ul>
-//       </div>
-//     </div>
-//   )
-// }
 
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { HEADERS } from "../../constants";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfoAction } from "../../redux/actions/GetUserInfoAction";
 
 function Header() {
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.GetUserInfoReducers)
+  console.log(data)
+
+  useEffect(()=>{
+    localStorage.getItem("ACCESS_TOKEN") && dispatch(getUserInfoAction())
+  },[localStorage.getItem("ACCESS_TOKEN")])
+
   return (
     <Navbar className="headerContainer"  expand="lg">
       <Container fluid>

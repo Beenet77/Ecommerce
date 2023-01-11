@@ -12,7 +12,7 @@ export const getCategories = () => async (dispatch) => {
 			alert("somthing went wrong")
 		}
 	}
-	catch {
-		alert("somthing went wrong")
+	catch(err) {
+		alert(err.message)
 	}
 }
