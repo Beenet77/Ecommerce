@@ -12,7 +12,6 @@ import { getUserInfoAction } from "../../redux/actions/GetUserInfoAction";
 function Header() {
   const dispatch = useDispatch();
   const data = useSelector(state => state.GetUserInfoReducers)
-  console.log(data)
 
   useEffect(()=>{
     localStorage.getItem("ACCESS_TOKEN") && dispatch(getUserInfoAction())
